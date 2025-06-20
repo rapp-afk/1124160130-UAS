@@ -1,6 +1,6 @@
-/* =================================================================
+/* 
    1. Konfigurasi Dasar & Variabel
-   ================================================================= */
+    */
 
 :root {
     /* Palet Warna (diambil dari Tailwind) */
@@ -37,9 +37,9 @@
     --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
-/* =================================================================
+/* 
    2. Mode Gelap (Dark Mode)
-   ================================================================= */
+    */
 
 html.dark {
     --color-bg-primary: var(--color-gray-900);
@@ -60,9 +60,9 @@ html.dark {
     --color-modal-bg: var(--color-gray-800);
 }
 
-/* =================================================================
+/* 
    3. Gaya Dasar & Tata Letak
-   ================================================================= */
+    */
 body {
     background-color: var(--color-bg-primary, var(--color-emerald-50));
     color: var(--color-text-primary, var(--color-gray-800));
@@ -94,9 +94,9 @@ body {
     display: none !important;
 }
 
-/* =================================================================
+/* 
    4. Komponen Header
-   ================================================================= */
+    */
 .header {
     display: flex;
     align-items: center;
@@ -164,9 +164,9 @@ html.dark .theme-toggle-btn:focus {
     box-shadow: 0 0 0 4px var(--color-gray-700);
 }
 
-/* =================================================================
+/* 
    5. Komponen Card
-   ================================================================= */
+    */
 .card {
     background-color: var(--color-bg-card, var(--color-white));
     border-radius: 0.75rem; /* 12px */
@@ -191,9 +191,9 @@ html.dark .theme-toggle-btn:focus {
     margin: 0;
 }
 
-/* =================================================================
+/* 
    6. Form
-   ================================================================= */
+    */
 .form-layout {
     display: flex;
     flex-direction: column;
@@ -266,9 +266,9 @@ input:-webkit-autofill:active {
     font-size: 0.875rem;
 }
 
-/* =================================================================
+/* 
    7. Tombol (Buttons)
-   ================================================================= */
+    */
 .btn {
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
@@ -322,9 +322,9 @@ input:-webkit-autofill:active {
     font-size: 0.875rem;
 }
 
-/* =================================================================
+/* 
    8. Kotak Ringkasan (Summary Box)
-   ================================================================= */
+    */
 .summary-box {
     background-color: var(--color-bg-secondary, var(--color-gray-100));
     border-radius: 0.5rem;
@@ -353,9 +353,9 @@ input:-webkit-autofill:active {
     margin-top: 0.5rem;
 }
 
-/* =================================================================
+/* 
    9. Riwayat Transaksi
-   ================================================================= */
+    */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -470,9 +470,9 @@ html.dark .status-badge-success {
 }
 
 
-/* =================================================================
+/* 
    10. Modal
-   ================================================================= */
+    */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -528,9 +528,9 @@ html.dark .status-badge-success {
     font-size: 0.875rem;
 }
 
-/* =================================================================
+/* 
    11. Ikon
-   ================================================================= */
+    */
 .icon {
     width: 1.25rem;
     height: 1.25rem;
