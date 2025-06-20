@@ -56,6 +56,20 @@
                              <option value="pandan_jagung" data-price="70000">Martabak Pandan Jagung Keju - Rp 70.000</option>
                         </select>
                     </div>
+
+                     <div>
+                         <label for="quantity" class="form-label">Jumlah</label>
+                         <input type="number" id="quantity" name="quantity" min="1" value="1" class="form-input" required>
+                    </div>
+                    <div>
+                        <label class="form-label">Metode Pembayaran</label>
+                        <div class="radio-group">
+                             <label class="radio-label"><input type="radio" name="paymentMethod" value="transfer" class="form-radio"><span class="radio-text">Transfer Bank</span></label>
+                             <label class="radio-label"><input type="radio" name="paymentMethod" value="ewallet" class="form-radio"><span class="radio-text">GoPay/Dana</span></label>
+                             <label class="radio-label"><input type="radio" name="paymentMethod" value="credit" class="form-radio"><span class="radio-text">Kartu Kredit</span></label>
+                             <label class="radio-label"><input type="radio" name="paymentMethod" value="cash" class="form-radio"><span class="radio-text">Bayar Tunai</span></label>
+                        </div>
+                    </div>
     </div>      
     
   </body>
