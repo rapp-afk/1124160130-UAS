@@ -136,6 +136,25 @@
             <button id="closeModalBtn" class="btn btn-secondary btn-full">Tutup</button>
         </div>
     </div>
+
+    <template id="transactionTemplate">
+        <div class="transaction-item">
+            <div class="transaction-item-header">
+                <div>
+                    <h4 class="transaction-customer"></h4>
+                    <p class="transaction-product"></p>
+                </div>
+                <div class="transaction-item-amount">
+                    <div class="transaction-amount"></div>
+                    <div class="transaction-time"></div>
+                </div>
+            </div>
+            <div class="transaction-item-footer">
+                <span class="badge transaction-method"></span>
+                <span class="badge status-badge-success transaction-status">Berhasil</span>
+            </div>
+        </div>
+    </template>
     
   </body>
   </html>
