@@ -15,9 +15,8 @@
             </div>
             <div class="header-text">
                 <h1>Open Payment Portal Global Instituted</h1>
-                <p>NIM: 1124160130
-                   Nama: Rafa Fathur Rohman
-                </p>
+                <p style="text-align: center;">NIM: 1124160130 </p>
+                <p style="text-align: center;">Nama: Rafa Fathur Rohman</p>
             </div>
             <div class="theme-toggle-wrapper">
                 <button id="theme-toggle" type="button" class="theme-toggle-btn">
@@ -122,6 +121,20 @@
                 </div>
             </div>
         </main>
+    </div>
+
+     <div id="paymentModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-icon-wrapper">
+                    <svg class="icon-lg text-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <h3>Pembayaran Berhasil!</h3>
+                <p>Transaksi Anda telah diproses</p>
+            </div>
+            <div id="paymentDetails" class="modal-details"></div>
+            <button id="closeModalBtn" class="btn btn-secondary btn-full">Tutup</button>
+        </div>
     </div>
     
   </body>
