@@ -85,7 +85,44 @@
                         <div id="discountRow" class="summary-row summary-discount hidden"><span>Diskon:</span><span id="discount">Rp 0</span></div>
                         <div class="summary-total"><span>Total:</span><span id="totalAmount">Rp 0</span></div>
                     </div>
-    </div>      
+                    <button type="submit" class="btn btn-primary btn-full">Proses Pembayaran</button>
+                </form>
+            </div>      
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-header-title">
+                        <svg class="icon-md icon-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        <h2>Riwayat Transaksi</h2>
+                    </div>
+                    <button id="clearHistoryBtn" class="btn btn-danger btn-sm hidden">&times;</button>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value text-sky" id="totalTransactions">0</div>
+                        <div class="stat-label">Transaksi</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value text-green" id="totalRevenue">Rp 0</div>
+                        <div class="stat-label">Pendapatan</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value text-amber" id="avgTransaction">Rp 0</div>
+                        <div class="stat-label">Rata-rata</div>
+                    </div>
+                </div>
+
+                <div id="transactionList" class="transaction-list-container">
+                    <div id="emptyState" class="empty-state">
+                        <svg class="empty-state-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        <p class="empty-state-title">Belum ada transaksi</p>
+                        <p class="empty-state-subtitle">Lakukan pembayaran pertama Anda!</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
     
   </body>
   </html>
