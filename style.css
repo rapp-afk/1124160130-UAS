@@ -1,10 +1,19 @@
-/* 
-   1. Konfigurasi Dasar & Variabel
-    */
+/* 1. Konfigurasi Dasar & Variabel (Colorful Palette)
+*/
 
 :root {
-    /* Palet Warna (diambil dari Tailwind) */
-    --color-emerald-50: #f0fdf4;
+    /* Palet Warna Baru */
+    --color-indigo-100: #e0e7ff;
+    --color-indigo-400: #818cf8;
+    --color-indigo-500: #6366f1;
+    --color-indigo-600: #4f46e5;
+    --color-indigo-700: #4338ca;
+    --color-teal-100: #ccfbf1;
+    --color-teal-400: #2dd4bf;
+    --color-teal-500: #14b8a6;
+    --color-teal-600: #0d9488;
+    
+    /* Warna yang Dipertahankan */
     --color-gray-50: #f9fafb;
     --color-gray-100: #f3f4f6;
     --color-gray-200: #e5e7eb;
@@ -16,30 +25,21 @@
     --color-gray-800: #1f2937;
     --color-gray-900: #111827;
     --color-white: #ffffff;
-    --color-green-100: #d1fae5;
-    --color-green-400: #34d399;
-    --color-green-500: #10b981;
-    --color-green-600: #059669;
-    --color-green-700: #047857;
-    --color-green-800: #065f46;
+    --color-amber-100: #fef3c7;
     --color-amber-500: #f59e0b;
     --color-amber-600: #d97706;
     --color-red-500: #ef4444;
     --color-red-600: #dc2626;
-    --color-sky-100: #e0f2fe;
-    --color-sky-300: #7dd3fc;
-    --color-sky-600: #0284c7;
 
-    /* Bayangan */
+    /* Bayangan (Shadows) */
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
     --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
     --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
-/* 
-   2. Mode Gelap (Dark Mode)
-    */
+/* 2. Mode Gelap (Dark Mode)
+*/
 
 html.dark {
     --color-bg-primary: var(--color-gray-900);
@@ -50,25 +50,30 @@ html.dark {
     --color-text-secondary: var(--color-gray-400);
     --color-text-header: var(--color-gray-100);
     --color-border: var(--color-gray-700);
-    --color-green-icon: var(--color-green-400);
-    --color-stat-sky-bg: rgba(56, 189, 248, 0.1);
-    --color-stat-green-bg: rgba(16, 185, 129, 0.1);
+    --color-accent-icon: var(--color-indigo-400);
+    --color-stat-accent-bg: rgba(99, 102, 241, 0.1);
+    --color-stat-teal-bg: rgba(20, 184, 166, 0.1);
     --color-stat-amber-bg: rgba(245, 158, 11, 0.1);
-    --color-stat-sky-text: var(--color-sky-300);
-    --color-stat-green-text: var(--color-green-400);
+    --color-stat-accent-text: var(--color-indigo-400);
+    --color-stat-teal-text: var(--color-teal-400);
     --color-stat-amber-text: var(--color-amber-500);
     --color-modal-bg: var(--color-gray-800);
 }
 
-/* 
-   3. Gaya Dasar & Tata Letak
-    */
+/* 3. Gaya Dasar & Tata Letak
+*/
 body {
-    background-color: var(--color-bg-primary, var(--color-emerald-50));
+    background-color: var(--color-gray-100);
+    background-image: linear-gradient(to right bottom, var(--color-indigo-100), var(--color-gray-100));
     color: var(--color-text-primary, var(--color-gray-800));
     transition: background-color 0.3s, color 0.3s;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     margin: 0;
+}
+
+html.dark body {
+    background-color: var(--color-bg-primary);
+    background-image: none;
 }
 
 .container {
@@ -83,7 +88,6 @@ body {
     gap: 2rem;
 }
 
-/* Responsif untuk layar besar */
 @media (min-width: 1024px) {
     .main-content {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -94,9 +98,8 @@ body {
     display: none !important;
 }
 
-/* 
-   4. Komponen Header
-    */
+/* 4. Komponen Header
+*/
 .header {
     display: flex;
     align-items: center;
@@ -110,7 +113,7 @@ body {
     width: 4rem;
     border-radius: 9999px;
     overflow: hidden;
-    border: 2px solid var(--color-white);
+    border: 3px solid var(--color-white);
     box-shadow: var(--shadow-md);
 }
 html.dark .profile-image-wrapper {
@@ -127,7 +130,7 @@ html.dark .profile-image-wrapper {
 .header-text h1 {
     font-size: 1.875rem; /* 30px */
     font-weight: 700;
-    color: var(--color-text-header, var(--color-gray-800));
+    color: var(--color-accent-icon, var(--color-indigo-600));
     margin-bottom: 0.5rem;
 }
 .header-text p {
@@ -143,18 +146,20 @@ html.dark .profile-image-wrapper {
     background-color: transparent;
     border: none;
     border-radius: 0.5rem;
-    padding: 0.625rem; /* 10px */
+    padding: 0.625rem;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, color 0.2s;
 }
 .theme-toggle-btn:hover {
     background-color: var(--color-gray-200);
+    color: var(--color-indigo-500);
 }
 html.dark .theme-toggle-btn {
     color: var(--color-gray-400);
 }
 html.dark .theme-toggle-btn:hover {
     background-color: var(--color-gray-700);
+    color: var(--color-indigo-400);
 }
 .theme-toggle-btn:focus {
     outline: none;
@@ -164,15 +169,15 @@ html.dark .theme-toggle-btn:focus {
     box-shadow: 0 0 0 4px var(--color-gray-700);
 }
 
-/* 
-   5. Komponen Card
-    */
+/* 5. Komponen Card
+*/
 .card {
     background-color: var(--color-bg-card, var(--color-white));
-    border-radius: 0.75rem; /* 12px */
+    border-radius: 0.75rem;
     box-shadow: var(--shadow-lg);
     padding: 1.5rem;
     border: 1px solid var(--color-border, var(--color-gray-200));
+    backdrop-filter: blur(10px);
 }
 .card-header {
     display: flex;
@@ -185,15 +190,14 @@ html.dark .theme-toggle-btn:focus {
     align-items: center;
 }
 .card-header h2 {
-    font-size: 1.25rem; /* 20px */
+    font-size: 1.25rem;
     font-weight: 600;
     color: var(--color-text-header, var(--color-gray-800));
     margin: 0;
 }
 
-/* 
-   6. Form
-    */
+/* 6. Form
+*/
 .form-layout {
     display: flex;
     flex-direction: column;
@@ -201,7 +205,7 @@ html.dark .theme-toggle-btn:focus {
 }
 .form-label {
     display: block;
-    font-size: 0.875rem; /* 14px */
+    font-size: 0.875rem;
     font-weight: 500;
     color: var(--color-text-secondary, var(--color-gray-700));
     margin-bottom: 0.5rem;
@@ -211,21 +215,20 @@ html.dark .theme-toggle-btn:focus {
     padding: 0.5rem 1rem;
     background-color: var(--color-bg-input, var(--color-gray-50));
     border: 1px solid var(--color-border, var(--color-gray-300));
-    border-radius: 0.5rem; /* 8px */
+    border-radius: 0.5rem;
     box-sizing: border-box;
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 .form-input:focus {
     outline: none;
-    border-color: var(--color-green-500);
-    box-shadow: 0 0 0 2px var(--color-green-500);
+    border-color: var(--color-indigo-500);
+    box-shadow: 0 0 0 3px var(--color-indigo-100);
 }
 html.dark .form-input:focus {
-    border-color: var(--color-green-400);
-    box-shadow: 0 0 0 2px var(--color-green-400);
+    border-color: var(--color-indigo-400);
+    box-shadow: 0 0 0 3px var(--color-stat-accent-bg);
 }
 
-/* Styling Autofill */
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
@@ -245,10 +248,10 @@ input:-webkit-autofill:active {
     cursor: pointer;
 }
 .form-radio {
-    color: var(--color-green-600);
+    color: var(--color-indigo-600);
 }
 .form-radio:focus {
-    ring: var(--color-green-500);
+    ring: var(--color-indigo-500);
 }
 .radio-text {
     margin-left: 0.5rem;
@@ -266,16 +269,15 @@ input:-webkit-autofill:active {
     font-size: 0.875rem;
 }
 
-/* 
-   7. Tombol (Buttons)
-    */
+/* 7. Tombol (Buttons)
+*/
 .btn {
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     font-weight: 600;
     border: none;
     cursor: pointer;
-    transition: background-color 0.2s, box-shadow 0.2s;
+    transition: all 0.2s;
     text-align: center;
 }
 .btn-promo {
@@ -284,19 +286,21 @@ input:-webkit-autofill:active {
 }
 .btn-promo:hover {
     background-color: var(--color-amber-600);
+    transform: translateY(-2px);
 }
 .btn-promo:disabled {
     background-color: var(--color-gray-400);
     cursor: not-allowed;
+    transform: none;
 }
 .btn-primary {
-    background-color: var(--color-green-600);
+    background-image: linear-gradient(to right, var(--color-indigo-500), var(--color-indigo-600));
     color: var(--color-white);
     box-shadow: var(--shadow-lg);
 }
 .btn-primary:hover {
-    background-color: var(--color-green-700);
-    box-shadow: 0 0 15px rgba(5, 150, 105, 0.3);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+    transform: translateY(-2px);
 }
 .btn-secondary {
     background-color: var(--color-gray-600);
@@ -322,9 +326,8 @@ input:-webkit-autofill:active {
     font-size: 0.875rem;
 }
 
-/* 
-   8. Kotak Ringkasan (Summary Box)
-    */
+/* 8. Kotak Ringkasan (Summary Box)
+*/
 .summary-box {
     background-color: var(--color-bg-secondary, var(--color-gray-100));
     border-radius: 0.5rem;
@@ -339,13 +342,13 @@ input:-webkit-autofill:active {
     margin-bottom: 0.5rem;
 }
 .summary-discount {
-    color: var(--color-green-icon, var(--color-green-600));
+    color: var(--color-accent-icon, var(--color-teal-500));
 }
 .summary-total {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 1.125rem; /* 18px */
+    font-size: 1.125rem;
     font-weight: 600;
     color: var(--color-text-header, var(--color-gray-800));
     border-top: 1px solid var(--color-border, var(--color-gray-200));
@@ -353,9 +356,8 @@ input:-webkit-autofill:active {
     margin-top: 0.5rem;
 }
 
-/* 
-   9. Riwayat Transaksi
-    */
+/* 9. Riwayat Transaksi
+*/
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -367,26 +369,26 @@ input:-webkit-autofill:active {
     padding: 0.75rem;
     border-radius: 0.5rem;
 }
-.stat-item:nth-child(1) { background-color: var(--color-stat-sky-bg, var(--color-sky-100)); }
-.stat-item:nth-child(2) { background-color: var(--color-stat-green-bg, var(--color-green-100)); }
-.stat-item:nth-child(3) { background-color: var(--color-stat-amber-bg, #fffbeb); } /* amber-100 */
+.stat-item:nth-child(1) { background-color: var(--color-stat-accent-bg, var(--color-indigo-100)); }
+.stat-item:nth-child(2) { background-color: var(--color-stat-teal-bg, var(--color-teal-100)); }
+.stat-item:nth-child(3) { background-color: var(--color-stat-amber-bg, var(--color-amber-100)); }
 .stat-value {
-    font-size: 1.5rem; /* 24px */
+    font-size: 1.5rem;
     font-weight: 700;
 }
 .stat-label {
     font-size: 0.875rem;
     color: var(--color-text-secondary, var(--color-gray-600));
 }
-.text-sky { color: var(--color-stat-sky-text, var(--color-sky-600)); }
-.text-green { color: var(--color-stat-green-text, var(--color-green-600)); }
+.text-sky { color: var(--color-stat-accent-text, var(--color-indigo-600)); }
+.text-green { color: var(--color-stat-teal-text, var(--color-teal-600)); }
 .text-amber { color: var(--color-stat-amber-text, var(--color-amber-600)); }
 
 .transaction-list-container {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    max-height: 24rem; /* 384px */
+    max-height: 24rem;
     overflow-y: auto;
     padding-right: 0.5rem;
     margin-right: -0.5rem;
@@ -420,10 +422,11 @@ html.dark .empty-state-icon {
 }
 .transaction-item:hover {
     box-shadow: var(--shadow-md);
-    border-color: var(--color-green-400);
+    border-color: var(--color-indigo-400);
+    transform: translateX(4px);
 }
 html.dark .transaction-item:hover {
-    border-color: var(--color-green-500);
+    border-color: var(--color-indigo-500);
 }
 .transaction-item-header {
     display: flex;
@@ -444,10 +447,10 @@ html.dark .transaction-item:hover {
 }
 .transaction-amount {
     font-weight: 600;
-    color: var(--color-green-icon, var(--color-green-600));
+    color: var(--color-accent-icon, var(--color-indigo-600));
 }
 .transaction-time {
-    font-size: 0.75rem; /* 12px */
+    font-size: 0.75rem;
     color: var(--color-gray-500);
 }
 .transaction-item-footer {
@@ -460,19 +463,19 @@ html.dark .transaction-item:hover {
     padding: 0.25rem 0.5rem;
     border-radius: 9999px;
     font-size: 0.75rem;
+    font-weight: 500;
 }
 .status-badge-success {
-    background-color: var(--color-stat-green-bg, var(--color-green-100));
-    color: #065f46; /* green-800 */
+    background-color: var(--color-stat-teal-bg, var(--color-teal-100));
+    color: var(--color-teal-600);
 }
 html.dark .status-badge-success {
-    color: var(--color-green-400);
+    color: var(--color-teal-400);
 }
 
 
-/* 
-   10. Modal
-    */
+/* 10. Modal
+*/
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -491,7 +494,7 @@ html.dark .status-badge-success {
     background-color: var(--color-modal-bg, var(--color-white));
     border-radius: 0.75rem;
     padding: 1.5rem;
-    max-width: 24rem; /* 384px */
+    max-width: 24rem;
     width: 100%;
     margin: 1rem;
     box-shadow: var(--shadow-2xl);
@@ -503,7 +506,7 @@ html.dark .status-badge-success {
 .modal-icon-wrapper {
     width: 4rem;
     height: 4rem;
-    background-color: var(--color-stat-green-bg, var(--color-green-100));
+    background-color: var(--color-stat-accent-bg, var(--color-indigo-100));
     border-radius: 9999px;
     display: flex;
     align-items: center;
@@ -528,9 +531,8 @@ html.dark .status-badge-success {
     font-size: 0.875rem;
 }
 
-/* 
-   11. Ikon
-    */
+/* 11. Ikon
+*/
 .icon {
     width: 1.25rem;
     height: 1.25rem;
@@ -544,9 +546,9 @@ html.dark .status-badge-success {
     width: 2rem;
     height: 2rem;
 }
-.icon-green {
-    color: var(--color-green-icon, var(--color-green-600));
+.icon-green { /* Diremap ke warna aksen baru */
+    color: var(--color-accent-icon, var(--color-indigo-600));
 }
-.text-green { /* Untuk modal icon */
-     color: var(--color-green-icon, var(--color-green-500));
+.text-green { /* Untuk modal icon, diremap ke aksen baru */
+    color: var(--color-accent-icon, var(--color-indigo-500));
 }

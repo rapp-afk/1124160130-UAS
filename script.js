@@ -1,5 +1,4 @@
-
-        // ===== DATA & VARIABEL GLOBAL =====
+// ===== DATA & VARIABEL GLOBAL =====
         let transactions = [];
         let transactionIdCounter = 1;
         let currentDiscount = 0;
@@ -60,6 +59,11 @@
         const closeModalBtn = document.getElementById('closeModalBtn');
 
         // ===== FUNGSI UTILITY =====
+
+        // Fungsi untuk menyimpan transaksi ke localStorage
+        function saveTransactions() {
+            localStorage.setItem('transactions', JSON.stringify(transactions));
+        }
         
         // Format mata uang Rupiah
         function formatCurrency(amount) {
@@ -203,6 +207,7 @@
             };
 
             transactions.push(transaction);
+            saveTransactions(); // Simpan ke localStorage setelah transaksi baru
             return transaction;
         }
 
@@ -217,6 +222,10 @@
                     <div class="flex justify-between">
                         <span class="text-gray-600">Nama:</span>
                         <span class="font-medium">${transaction.customerName}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Email:</span>
+                        <span class="font-medium">${transaction.customerEmail}</span>
                     </div>
                     <div class="flex justify-between">
                         <span class="text-gray-600">Produk:</span>
@@ -262,6 +271,7 @@
             const clone = template.content.cloneNode(true);
             
             clone.querySelector('.transaction-customer').textContent = transaction.customerName;
+            clone.querySelector('.transaction-email').textContent = transaction.customerEmail;
             clone.querySelector('.transaction-product').textContent = `${transaction.product} (${transaction.quantity}x)`;
             clone.querySelector('.transaction-amount').textContent = formatCurrency(transaction.total);
             clone.querySelector('.transaction-time').textContent = transaction.time;
@@ -275,23 +285,20 @@
 
         // Render daftar transaksi
         function renderTransactions() {
-            // Hapus semua transaksi dari DOM
-            const transactionItems = transactionList.querySelectorAll('[data-transaction-id]');
-            transactionItems.forEach(item => item.remove());
+            transactionList.innerHTML = ''; // Hapus semua riwayat yg ada di tampilan
 
             if (transactions.length === 0) {
+                transactionList.appendChild(emptyState);
                 emptyState.style.display = 'block';
                 clearHistoryBtn.classList.add('hidden');
             } else {
                 emptyState.style.display = 'none';
                 clearHistoryBtn.classList.remove('hidden');
 
-                // Tampilkan transaksi terbaru di atas
                 const sortedTransactions = [...transactions].reverse();
                 sortedTransactions.forEach(transaction => {
                     const transactionElement = createTransactionElement(transaction);
-                    // Tambahkan ID untuk referensi
-                    const container = transactionElement.querySelector('div');
+                    const container = transactionElement.querySelector('.transaction-item');
                     container.setAttribute('data-transaction-id', transaction.id);
                     transactionList.appendChild(transactionElement);
                 });
@@ -317,6 +324,7 @@
             
             if (confirm('Apakah Anda yakin ingin menghapus semua riwayat transaksi?')) {
                 transactions = [];
+                saveTransactions(); // Hapus juga dari localStorage
                 renderTransactions();
             }
         }
@@ -336,18 +344,20 @@
             
             const formData = new FormData(paymentForm);
             
-            // Validasi metode pembayaran
             if (!formData.get('paymentMethod')) {
                 alert('Silakan pilih metode pembayaran');
                 return;
             }
 
-            // Validasi total > 0
             const total = calculateSubtotal() - currentDiscount;
-            if (total <= 0) {
-                alert('Total pembayaran harus lebih dari 0');
+            if (total <= 0 && calculateSubtotal() > 0) {
+                alert('Total pembayaran setelah diskon harus lebih dari 0');
                 return;
+            } else if (calculateSubtotal() <= 0) {
+                 alert('Silakan pilih produk terlebih dahulu');
+                 return;
             }
+
 
             try {
                 const transaction = processPayment(formData);
@@ -395,10 +405,15 @@
         
         // Initialize app
         function initApp() {
+            // Muat transaksi dari localStorage saat aplikasi dimulai
+            const savedTransactions = localStorage.getItem('transactions');
+            if (savedTransactions) {
+                transactions = JSON.parse(savedTransactions);
+            }
+
             updateTotal();
             renderTransactions();
             
-            // Focus ke input nama saat halaman dimuat
             document.getElementById('customerName').focus();
         }
 
@@ -416,11 +431,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fungsi untuk memperbarui ikon toggle berdasarkan tema saat ini
     const updateIcons = () => {
         if (document.documentElement.classList.contains('dark')) {
-            // Jika mode gelap, tampilkan ikon matahari (untuk beralih ke terang)
             darkIcon.classList.add('hidden');
             lightIcon.classList.remove('hidden');
         } else {
-            // Jika mode terang, tampilkan ikon bulan (untuk beralih ke gelap)
             darkIcon.classList.remove('hidden');
             lightIcon.classList.add('hidden');
         }
@@ -428,38 +441,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fungsi untuk menerapkan tema saat halaman pertama kali dimuat
     const applyInitialTheme = () => {
-        // Cek preferensi tema yang tersimpan di localStorage
         const savedTheme = localStorage.getItem('theme');
-        // Cek preferensi tema dari sistem operasi pengguna
         const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
         if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-            // Jika tersimpan 'dark' atau tidak ada simpanan tapi OS preferensi gelap
             document.documentElement.classList.add('dark');
         } else {
-            // Selain itu, gunakan mode terang
             document.documentElement.classList.remove('dark');
         }
-        // Perbarui ikon setelah tema diterapkan
         updateIcons();
     };
 
     // Tambahkan event listener ke tombol toggle
     themeToggleButton.addEventListener('click', () => {
-        // Toggle kelas 'dark' pada elemen <html>
         document.documentElement.classList.toggle('dark');
 
-        // Simpan preferensi baru ke localStorage
         if (document.documentElement.classList.contains('dark')) {
             localStorage.setItem('theme', 'dark');
         } else {
             localStorage.setItem('theme', 'light');
         }
         
-        // Perbarui ikon setelah tema diubah
         updateIcons();
     });
 
-    // Terapkan tema yang benar saat halaman dimuat
     applyInitialTheme();
 });
